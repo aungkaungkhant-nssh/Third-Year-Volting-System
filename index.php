@@ -7,26 +7,26 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
- .wrap {
- width: 100%;
- max-width: 400px;
- margin: 40px auto;
+        .wrap {
+        width: 90%;
+        max-width: 400px;
+        margin: 140px auto;
  }
  </style>
 </head>
 <body class="text-center">
     <div class="wrap">
         <h1 class="h3 mb-3">Login</h1>
-        <?php if ( isset($_GET['incorrect']) ) : ?>
+        <!-- <?php if ( isset($_GET['incorrect']) ) : ?>
             <div class="alert alert-warning">
                 Incorrect Email or Password
             </div>
-        <?php endif ?>
+        <?php endif ?> -->
         <form action="_actions/login.php" method="post">
             <input 
-                type="email" name="email" 
+                type="text" name="phone" 
                 class="form-control mb-2" 
-                placeholder="Email" required
+                placeholder="Phone" required
             >
             <input 
                 type="password" name="password" 
