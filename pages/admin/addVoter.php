@@ -6,7 +6,10 @@
             </div>
             <div class="col-md-6 offset-md-3" style="margin-top:40px;">
                 <h4 class="text-secondary" style="font-weight: 400;margin-bottom:20px">Add Voted</h4>
-                <form action="">
+                <!-- Dev Aung San Min Updated file upload -->
+                <form action="../../actions/admin/upload.php"
+                      method="post"
+                      enctype="multipart/form-data">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Name">
                     </div>
@@ -17,7 +20,7 @@
                         <input type="text" class="form-control" placeholder="Roll no">
                     </div>
                     <div class="form-group">
-                        <input type="file" class="form-control">
+                        <input type="file" name="photo" class="form-control">
                     </div>
                     <div class=" ">
                         <input type="submit" value="Add Voted" class="btn btn-primary w-100">
