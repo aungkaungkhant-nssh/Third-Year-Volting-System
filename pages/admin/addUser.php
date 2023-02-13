@@ -6,15 +6,15 @@
             </div>
             <div class="col-md-6 offset-md-3" style="margin-top:40px;">
                 <h4 class="text-secondary" style="font-weight: 400;margin-bottom:20px">Add User</h4>
-                <form action="">
+                <form action="../../actions/admin/addUser.php" method="post">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Name">
+                        <input type="text" class="form-control" placeholder="Name" name="name">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Phone">
+                        <input type="text" class="form-control" placeholder="Phone" name="phone">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" class="form-control" placeholder="Password" name="password">
                     </div>
                     <div class=" ">
                         <input type="submit" value="Add Voted" class="btn btn-primary w-100">

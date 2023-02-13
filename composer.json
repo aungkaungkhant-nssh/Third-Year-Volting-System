@@ -1,0 +1,18 @@
+{
+    "name": "akk/thirdyear",
+    "autoload": {
+        "psr-4": {
+            "Helpers\\":"classes/Helpers",
+            "Libs\\":"classes/Libs"
+        }
+    },
+    "authors": [
+        {
+            "name": "Aung San Min",
+            "email": "sanminaung158@gmail.com"
+        }
+    ],
+    "require": {
+        "fakerphp/faker": "^1.21"
+    }
+}
