@@ -11,7 +11,13 @@
 </head>
 <body>
     <?php 
+        include("../../vendor/autoload.php");
+        use Helpers\Auth;
+        use Libs\Database\MySQL;
+        use Libs\Database\CategoriesTable;
+       
         $request_uri =  $_SERVER['REQUEST_URI']; 
+        $categories =  new CategoriesTable(new MySQL());
     ?>
   
     <section style="width: 100vw;">
@@ -28,6 +34,23 @@
                     <ul style="padding:0px 20px;;">
                         <li>
                             <a href="">Dashboard</a>
+                        </li>
+                        <li id="accordion">
+                            <div  data-toggle="collapse" data-target="#category" aria-expanded="true" aria-controls="collapseOne" style="cursor:pointer">
+                                <span class="mr-2">Category</span>
+                                <i class="fa-solid fa-caret-down"></i>
+                            </div>
+                            <div id="category" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"> 
+                                <ul style="margin:0;padding:10px 5px 0px 8px;">
+                                    <li>
+                                        <a href="allCategories.php" class="<?= strpos($request_uri,"allCategory") >0 ? 'text-primary' : '' ?>">All Category</a>
+                                    </li>
+                                    <li>
+                                         <a href="addCategory.php" class="<?= strpos($request_uri,"addCategory") >0 ? 'text-primary' : '' ?>">Add Category</a>
+                                     </li>
+                                </ul>
+                              
+                            </div>  
                         </li>
                         <li id="accordion">
                             <div  data-toggle="collapse" data-target="#voter" aria-expanded="true" aria-controls="collapseOne" style="cursor:pointer">

@@ -1,3 +1,12 @@
+<?php
+    include("vendor/autoload.php");
+    use Helpers\HTTP;
+    session_start();
+    if(isset($_SESSION['studentInfo'])){
+        HTTP::redirect("/pages/user/vote.php");
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +24,7 @@
  </style>
 </head>
 <body class="text-center">
+  
     <div class="wrap">
         <h1 class="h3 mb-3">Login</h1>
          <?php if ( isset($_GET['incorrect']) ) : ?>

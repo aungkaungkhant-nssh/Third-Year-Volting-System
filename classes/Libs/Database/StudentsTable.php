@@ -13,10 +13,10 @@ class StudentsTable
     {
         try {
             $sql = "INSERT INTO students(
-                        name,phone,password,
+                        name,phone,password,role_id,
                         created_at
                         )VALUES(
-                        :name,:phone,:password,
+                        :name,:phone,:password,:role_id,
                         NOW()
                         )
                     "; 
@@ -36,4 +36,21 @@ class StudentsTable
             ");
             return $stmt->fetchALL();
         }
+    public function findByPhoneAndPassword($phone, $password)
+    {
+        $statement = $this->db->prepare("
+        SELECT students.*, roles.name AS role, roles.value
+        FROM students LEFT JOIN roles
+        ON students.role_id = roles.id
+        WHERE students.phone = :phone 
+        AND students.password = :password
+        ");
+        $statement->execute([
+        ':phone' => $phone,
+        ':password' => $password 
+        ]);
+        $row = $statement->fetch();
+        return $row ?? false;
+}
+
 }
