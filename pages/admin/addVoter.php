@@ -6,21 +6,29 @@
             </div>
             <div class="col-md-6 offset-md-3" style="margin-top:40px;">
                 <h4 class="text-secondary" style="font-weight: 400;margin-bottom:20px">Add Voted</h4>
+                <?php if (isset($_GET['registered'])): ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Add Voter Success</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php endif ?>
                 <!-- Dev Aung San Min Updated file upload -->
-                <form action="../../actions/admin/upload.php"
+                <form action="../../actions/admin/voter/createVoter.php"
                       method="post"
                       enctype="multipart/form-data">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Name">
+                        <input type="text" class="form-control" placeholder="Name" name="name">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Year">
+                        <input type="text" class="form-control" placeholder="Year" name="year">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Roll no">
+                        <input type="text" class="form-control" placeholder="Roll no" name="role_no">
                     </div>
                     <div class="form-group">
-                        <input type="file" name="photo" class="form-control">
+                        <input type="file" name="image" class="form-control">
                     </div>
                     <div class=" ">
                         <input type="submit" value="Add Voted" class="btn btn-primary w-100">

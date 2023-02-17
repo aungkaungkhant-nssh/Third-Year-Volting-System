@@ -16,11 +16,12 @@
         use Libs\Database\MySQL;
         use Libs\Database\CategoriesTable;
         use Libs\Database\StudentsTable;
+        use Libs\Database\VotersTable;
        
         $request_uri =  $_SERVER['REQUEST_URI']; 
         $categories =  new CategoriesTable(new MySQL());
         $students = new StudentsTable(new MySQL());
-       
+        $voters = new VotersTable(new MySQL());
     ?>
   
     <section style="width: 100vw;">
