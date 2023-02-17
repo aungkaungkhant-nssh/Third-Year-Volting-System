@@ -23,11 +23,11 @@
                                 <td>Second Year</td>
                                 <td>10</td>
                                 <td>
-                                    <button class="btn btn-warning btn-sm">
+                                    <button class="btn btn-outline-warning btn-sm">
                                         <i class="fa-solid fa-pen"></i>
                                     </button>
                                     |
-                                    <button class="btn btn-danger btn-sm">
+                                    <button class="btn btn-outline-danger btn-sm">
                                          <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </td>

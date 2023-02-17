@@ -27,13 +27,16 @@ class StudentsTable
             return $e->getMesage();
         }
     }
-    public function getAll()
+    public function getAll($query="")
         {
-            $stmt = $this->db->query("
-                SELECT students.*,roles.name AS role,roles.value
-                FROM students LEFT JOIN roles
-                ON students.role_id = roles.id
-            ");
+            // $stmt = $this->db->query("
+            //     SELECT students.*,roles.name AS role,roles.value
+            //     FROM students LEFT JOIN roles
+            //     ON students.role_id = roles.id
+            // ");
+            $stmt;
+            if($query) $stmt= $this->db->query("select * from students where id=$query");
+            else  $stmt=$this->db->query("select * from students");
             return $stmt->fetchALL();
         }
     public function findByPhoneAndPassword($phone, $password)
@@ -51,6 +54,21 @@ class StudentsTable
         ]);
         $row = $statement->fetch();
         return $row ?? false;
-}
+    }
+    public function update($id, $name,$phone)
+    {
+        $statement = $this->db->prepare("
+        UPDATE students SET name=:name,phone=:phone WHERE id = :id"
+        );
+        $statement->execute([ ':name' => $name, ':id' => $id,':phone'=>$phone ]);
+        return $statement->rowCount();
+    }
+    public function destroy($id){
+        $statement = $this->db->prepare("
+        DELETE FROM students WHERE id = :id
+        ");
+        $statement->execute([ ':id' => $id ]);
+        return $statement->rowCount();
+    }
 
 }

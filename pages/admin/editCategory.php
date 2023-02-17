@@ -7,7 +7,13 @@
                 <h5 class="text-white ml-3">UCSL Volting System</h5>
             </div>
             <div class="col-md-6 offset-md-3" style="margin-top:40px;">
-                <h4 class="text-secondary" style="font-weight: 400;margin-bottom:20px">Update Category</h4>
+         
+                 <div class="d-flex justify-content-between  align-items-center mb-4">
+                    <h4 class="text-secondary" style="font-weight: 400;margin-bottom:20px">Update Category</h4>
+                    <a href="./allCategories.php" class="btn btn-outline-primary">
+                            <i class="fa-solid fa-list"></i>
+                    </a>
+                </div>
                 <?php if ( isset($_GET['success']) ) : ?>
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>Update Category Success</strong>

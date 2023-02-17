@@ -15,9 +15,12 @@
         use Helpers\Auth;
         use Libs\Database\MySQL;
         use Libs\Database\CategoriesTable;
+        use Libs\Database\StudentsTable;
        
         $request_uri =  $_SERVER['REQUEST_URI']; 
         $categories =  new CategoriesTable(new MySQL());
+        $students = new StudentsTable(new MySQL());
+       
     ?>
   
     <section style="width: 100vw;">
