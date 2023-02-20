@@ -1,7 +1,7 @@
 <?php 
     require("./include/header.php");
     $voters= $voters->getAll($_GET["voterId"]);
-  
+    $categories = $categories->getAll();
 ?>
  
     <!-- start main component -->
@@ -33,6 +33,14 @@
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Year" name="year"  value="<?= $voters[0]->year ?>">
+                    </div>
+                    <div class="form-group">
+                        <select name="categoryId" id="" class="form-control">
+                            <option value="">Select Category</option>
+                            <?php  foreach($categories as $cat) : ?>
+                                <option value="<?= $cat->id ?>"  <?= $cat->id==$voters[0]->categoryId ? 'selected' :'' ?> ><?= $cat->name ?></option>
+                            <?php endforeach ;?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Roll no" name="role_no"  value="<?= $voters[0]->role_no ?>">

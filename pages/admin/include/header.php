@@ -22,12 +22,15 @@
         $categories =  new CategoriesTable(new MySQL());
         $students = new StudentsTable(new MySQL());
         $voters = new VotersTable(new MySQL());
+
+        $admin  = Auth::isAdmin();
+      
     ?>
   
     <section style="width: 100vw;">
         <div class="row no-gutters">
             <!-- start sidebar -->
-            <div class="col-md-2 bg-light" style="height: 100vh;box-shadow:4px 1px 5px 0px rgba(0,0,0,0.5)">
+            <div class="col-md-2 bg-light" style="height: 100vh;box-shadow:4px 1px 5px 0px rgba(0,0,0,0.5)" style="postion:relative">
                 <div class="profile-container">
                     <div class="profile">
                         <h5 class="text-center">Admin</h5>
@@ -37,7 +40,7 @@
                 <div style="margin-top:25px;">
                     <ul style="padding:0px 20px;;">
                         <li>
-                            <a href="">Dashboard</a>
+                            <a href="dashboard.php">Dashboard</a>
                         </li>
                         <li id="accordion">
                             <div  data-toggle="collapse" data-target="#category" aria-expanded="true" aria-controls="collapseOne" style="cursor:pointer">
@@ -93,6 +96,13 @@
                     
 
                     </ul>
+                </div>
+                <div style="position:absolute;bottom:15px;left:30%">
+                    
+                    <a class="btn btn-outline-primary" href="../../actions/admin/logout.php">
+                        <span class="mr-2">Logout</span>
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </a>
                 </div>
             </div>
             <!-- end sidebar -->

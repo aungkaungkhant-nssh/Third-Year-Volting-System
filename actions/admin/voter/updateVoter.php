@@ -13,7 +13,7 @@ move_uploaded_file($temp, "../../../image/$image");
 
 $table = new VotersTable(new MySQL());
 if($table){
-    $table->update($_POST["voterId"],$_POST["name"],$_POST["year"],$_POST["role_no"],$image ?? false);
+    $table->update($_POST["voterId"],$_POST["name"],$_POST["year"],$_POST["role_no"],$image ?? false,$_POST["categoryId"]);
     HTTP::redirect("/pages/admin/allVoter.php","success=true");
 }else{
     HTTP::redirect("/pages/admin/allVoter.php", "error=true");

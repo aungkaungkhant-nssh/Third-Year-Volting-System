@@ -13,9 +13,9 @@ class VotersTable
     {
         try {
             $sql = "INSERT INTO voters(
-                        name,year,role_no,image
+                        name,year,categoryId,role_no,image
                         )VALUES(
-                        :name,:year,:role_no,:image
+                        :name,:year,:categoryId,:role_no,:image
                         )
                     "; 
             $stmt = $this->db->prepare($sql);
@@ -26,51 +26,51 @@ class VotersTable
         }
     }
     public function getAll($query="")
-        {
-            // $stmt = $this->db->query("
-            //     SELECT students.*,roles.name AS role,roles.value
-            //     FROM students LEFT JOIN roles
-            //     ON students.role_id = roles.id
-            // ");
-            $stmt;
-            if($query) $stmt= $this->db->query("select * from voters where id=$query");
-            else  $stmt=$this->db->query("select * from voters");
-            return $stmt->fetchALL();
+    {
+        if($query) $stmt= $this->db->query("
+            select voters.*,categories.name as categoryName,categories.id as categoryId from voters left join categories on voters.categoryId=categories.id where voters.id=$query
+        ");
+        
+        else  $stmt=$this->db->query("select * from voters");
+        
+        return $stmt->fetchALL();
+    }
+    public function addVote($id,$voteCount){
+        try{
+            $statement = $this->db->prepare("update voters set vote_count=:vote_count where id=:id");
+            $statement->execute([
+             ":vote_count"=>$voteCount,
+             ":id"=>$id
+            ]);
+            return true;
+        }catch (PDOException $e) {
+            return false;
         }
-    // public function findByPhoneAndPassword($phone, $password)
-    // {
-    //     $statement = $this->db->prepare("
-    //     SELECT students.*, roles.name AS role, roles.value
-    //     FROM students LEFT JOIN roles
-    //     ON students.role_id = roles.id
-    //     WHERE students.phone = :phone 
-    //     AND students.password = :password
-    //     ");
-    //     $statement->execute([
-    //     ':phone' => $phone,
-    //     ':password' => $password 
-    //     ]);
-    //     $row = $statement->fetch();
-    //     return $row ?? false;
-    // }
-    public function update($id,$name,$year,$role_no,$image)
+      
+    }
+    public function update($id,$name,$year,$role_no,$image,$categoryId)
     {
         if($image){
                $statement = $this->db->prepare("
-                UPDATE voters SET name=:name,year=:year,role_no=:role_no,image=:image WHERE id = :id"
+                UPDATE voters SET name=:name,year=:year,categoryId=:categoryId,role_no=:role_no,image=:image WHERE id = :id"
             );
-            $statement->execute([ ':name' => $name, ':id' => $id,':year'=>$year,':role_no'=>$role_no,':image'=>$image ]);
+            $statement->execute([ ':name' => $name, ':id' => $id,':year'=>$year,':categoryId'=>$categoryId,':role_no'=>$role_no,':image'=>$image ]);
             return $statement->rowCount();
         }
         else{
             $statement = $this->db->prepare("
-            UPDATE voters SET name=:name,year=:year,role_no=:role_no WHERE id = :id"
+            UPDATE voters SET name=:name,year=:year,categoryId=:categoryId,role_no=:role_no WHERE id = :id"
             );
-            $statement->execute([ ':name' => $name, ':id' => $id,':year'=>$year,':role_no'=>$role_no ]);
+            $statement->execute([ ':name' => $name, ':id' => $id,':categoryId'=>$categoryId,':year'=>$year,':role_no'=>$role_no ]);
             return $statement->rowCount();
         }
     } 
-      
+    public function getBySearchCategory($categoryId){
+       
+        $stmt=$this->db->query("select * from voters where categoryId=$categoryId");
+           
+        return $stmt->fetchALL();
+    }
     public function destroy($id){
         $statement = $this->db->prepare("
         DELETE FROM voters WHERE id = :id

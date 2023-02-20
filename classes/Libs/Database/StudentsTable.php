@@ -39,18 +39,20 @@ class StudentsTable
             else  $stmt=$this->db->query("select * from students");
             return $stmt->fetchALL();
         }
-    public function findByPhoneAndPassword($phone, $password)
+    public function findByPhoneAndPassword($phone, $password,$role_id=1)
     {
         $statement = $this->db->prepare("
-        SELECT students.*, roles.name AS role, roles.value
+        SELECT students.*, roles.name AS role
         FROM students LEFT JOIN roles
         ON students.role_id = roles.id
         WHERE students.phone = :phone 
         AND students.password = :password
+        AND students.role_id = :role_id
         ");
         $statement->execute([
         ':phone' => $phone,
-        ':password' => $password 
+        ':password' => $password,
+        ":role_id"=>$role_id
         ]);
         $row = $statement->fetch();
         return $row ?? false;
@@ -63,6 +65,7 @@ class StudentsTable
         $statement->execute([ ':name' => $name, ':id' => $id,':phone'=>$phone ]);
         return $statement->rowCount();
     }
+    
     public function destroy($id){
         $statement = $this->db->prepare("
         DELETE FROM students WHERE id = :id
@@ -70,5 +73,6 @@ class StudentsTable
         $statement->execute([ ':id' => $id ]);
         return $statement->rowCount();
     }
-
+    
 }
+

@@ -11,7 +11,14 @@
 <?php 
     include("../../vendor/autoload.php");
     use Helpers\Auth;
+    use Libs\Database\MySQL;
+    use Libs\Database\CategoriesTable;
+    use Libs\Database\VotersTable;
 
+    $categories =  new CategoriesTable(new MySQL());
+    $voters = new VotersTable(new MySQL());
     $auth  = Auth::check();
+    
+   
    
 ?>

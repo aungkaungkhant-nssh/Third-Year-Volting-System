@@ -1,4 +1,7 @@
-<?php require("./include/header.php") ?>
+<?php 
+    require("./include/header.php");
+    $categories = $categories->getAll();    
+?>
     <!-- start main component -->
     <div class="col-md-10" style="height: 100vh;">
             <div class="bg-primary py-3 ">
@@ -23,6 +26,14 @@
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Year" name="year">
+                    </div>
+                    <div class="form-group">
+                        <select name="categoryId" id="" class="form-control">
+                            <option value="">Select Category</option>
+                            <?php  foreach($categories as $cat) : ?>
+                                <option value="<?= $cat->id ?>"><?= $cat->name ?></option>
+                            <?php endforeach ;?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Roll no" name="role_no">

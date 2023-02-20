@@ -22,7 +22,7 @@
                 Incorrect Phone or Password
             </div> 
         <?php endif ?>
-        <form action="../actions/admin/login.php" method="post">
+        <form action="../../actions/admin/login.php" method="post">
             <div class="form-group">
                 <input 
                     type="text" name="phone" 

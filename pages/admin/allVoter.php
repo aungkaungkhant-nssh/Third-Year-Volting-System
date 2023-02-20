@@ -57,5 +57,5 @@
                         </tbody>
                 </table>
             </div> 
-    </div>
+ </div>
 <?php require("./include/footer.php") ?>

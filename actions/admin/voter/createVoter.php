@@ -14,6 +14,7 @@ $data =[
     "name" =>$_POST['name'] ?? 'Unknown',
     "year" =>$_POST['year'] ?? 'Unknown',
     "role_no"=>$_POST["role_no"] ?? "Unknown",
+    "categoryId"=>$_POST["categoryId"] ?? "Unknown",
     "image"=> $image ?? "Unknown"
 
 ];

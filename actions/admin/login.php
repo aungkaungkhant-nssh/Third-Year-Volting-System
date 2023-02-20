@@ -1,9 +1,19 @@
 <?php
+include("../../vendor/autoload.php");
+session_start();
+use Libs\Database\MySQL;
+use Libs\Database\StudentsTable;
+use Helpers\HTTP;
 $phone = $_POST['phone'];
-$password = $_POST['password'];
-if($phone === '09261804445' and $password==='password')
-{
-    header('location:../../pages/admin/addVoter.php');
+$password = md5( $_POST['password'] );
+$student = new StudentsTable(new MySQL());
+
+$result =$student->findByPhoneAndPassword($phone,$password,2);
+
+if($result){
+    $_SESSION["adminInfo"] = $result;
+    HTTP::redirect("/pages/admin/dashboard.php");
 }else{
-    header('location:../index.php?incorrect=1');
+    
+    HTTP::redirect("/pages/admin/login.php","incorrect=true");
 }
